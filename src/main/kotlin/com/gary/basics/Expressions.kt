@@ -1,40 +1,25 @@
-# Kotlin Essentials
+package com.gary.com.gary.basics
 
-## Reference: https://courses.rockthejvm.com/courses/kotlin-essentials/lectures/52301560
-
-## Chapter 1: Variables and Types
-
-    val aBoolean: Boolean = true
-    val aChar: Char = 'a'
-    val aString: String = "Hello, World!"
-    _**val anIntRange: IntRange = 1..10**_
-    val aFloat: Float = 1.0f    //4 bytes
-    val aDouble: Double = 1.0   // 8 bytes
-    val aLong: Long = 1L        // 8 bytes
-    val aInt: Int = 1           // 4 bytes
-    val aByte: Byte = 1
-    val aShort: Short = 1       // 2 bytes
-
-## Chapter 2: Expressions and Instructions
-
-### 2.1: Expressions
+fun main() {
+    // expressions = structures that are turned into a value
+    val meaningOfLife: Int = 42 + 2
 
     // math expression: + - * / %
     // assignment expression: = += -= *= /= %=
     // comparison expression: < > <= >= == !=
     // logical expression: && || !
-    // _**range expression: a..b**_
-    // as expression: a as Type<br />
-    // is expression: a is Type<br />
+    // range expression: a..b
+    // as expression: a as Type
+    // is expression: a is Type
     // if expression: if (condition) { ... } else { ... }
     // when expression: when (condition) { ... }
     // for expression: for (item in collection) { ... }
-    // _**bitwise operations: shl, shr, ushr, and, or, xor, inv**_
+    // bitwise operations: shl, shr, ushr, and, or, xor, inv
     val bitwiseExpression = 2 shl 2 // 1000 = 8
     println("bitwiseExpression = $bitwiseExpression")
 
-### 2.2: Instructions
-Instructions are EXECUTED (imperative programming), and expressions are VALUE (functional programming)
+    // instructions and expressions - instructions are EXECUTED (imperative programming)
+    // whiles expressions are VALUE (functional programming)
 
     val aCondition = 1 > 2
     // instruction
@@ -69,6 +54,4 @@ Instructions are EXECUTED (imperative programming), and expressions are VALUE (f
         is String -> println("anything is a String")
         else -> println("anything is something else")
     }
-
-
-
+}
