@@ -117,13 +117,49 @@ Instructions are EXECUTED (imperative programming), and expressions are VALUE (f
     } while (j > 0)
 
 ## Chapter 4: Functions
-    // function declaration
-    fun aFunction(a: Int, b: Int): Int {
-        return a + b
+    // Unit == void
+    fun simpleFunction(arg: String): Unit {
+    println("Just passed an argument: $arg")    // string template or interpolation
     }
-    // function call
-    val aResult = aFunction(1, 2)
-    println("aResult = $aResult")
-    // function with default parameter
-    fun aFunctionWithDefaultParameter(a: Int, b: Int = 10): Int {
+    
+    fun printHello() {
+    println("Hello World! - no-arg function")
+    }
+    
+    // concatenate a string count times
+    fun concatenate(str1: String, count: Int): String {
+    val list = mutableListOf<String>()
+    for (i in 1..count) {
+    list.add(str1)
+    }
+    
+        return list.joinToString(" ")
+    }
+    
+    // special syntax for single expression functions
+    fun combineStrings(strA: String, strB: String): String = "$strA--$strB"
+    
+    // recursive function to combine strings
+    fun combineStringsRecursive(strA: String, strB: String): String =
+    if (strB.isEmpty()) strA else combineStringsRecursive(strA + strB.first(), strB.drop(1))
+    
+    fun concatenateRecursive(str1: String, count: Int): String =
+    if (count == 0) "" else if (count == 1) str1 else str1 + concatenateRecursive(str1, count - 1)
+    
+    //recursion
+    fun factorial(n: Long): Long = if (n <= 1) 1 else n * factorial(n - 1)
+    
+    // default args
+    fun demoDefaultArgs(a: Int = 0, b: String = "") {
+    println("a = $a, b = $b")
+    }
+    
+    fun complexFunction(outerArg: String) {
+    // very complex logic
+    fun innerFunction(innerArg: Int) {
+    println("Outer arg: $outerArg, inner arg: $innerArg")
+    }
+    
+        innerFunction(10)
+    }
 
