@@ -54,4 +54,50 @@ fun main() {
         is String -> println("anything is a String")
         else -> println("anything is something else")
     }
+
+    // looping - instructions
+    // for loop: NB: "i" is final and immutable inside the for loop
+    println("inclusive range")
+    for (i in 1..10) {
+        println("i = $i")
+    }
+    println("exclusive range")
+    for (i in 1..< 10) {
+        println("i = $i")
+    }
+    println("exclusive range v2")
+    for (i in 1 until 10) {
+        println("i = $i")
+    }
+    println("inclusive range, step 2 range")
+    for (i in 1..10 step 2) {
+        println("i = $i")
+    }
+
+    println("descending range")
+    for (i in 10 downTo 1) {
+        println("i = $i")
+    }
+
+    // arrays
+    println("iterating over collection")
+    val anArray = arrayOf(1, 2, 3, 5, 9, 8, 10, 4, 7, 6)
+    for (elem in anArray) {
+        println("elem = $elem")
+    }
+
+    // while loop
+    var i = 1
+    while ( i <= 10 ) {
+        println("i = $i")
+        i++
+    }
+
+    // do-while
+    var j = 10
+    do {
+        println("j = $j")
+        j--
+    } while (j > 0)
+
 }
