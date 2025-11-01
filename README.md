@@ -163,3 +163,37 @@ Instructions are EXECUTED (imperative programming), and expressions are VALUE (f
         innerFunction(10)
     }
 
+* Exercises:
+*  1. greeting function (name, age) -> "Hi, my name is $name, I'm $age years old"
+*  2. factorial function (n) -> n!
+*  3. fibonacci function (n) -> fib(n) = fib(n-1) + fib(n-2)
+*  4. reverse string function
+*  5. isPalindrome function
+*  6. isPermutation function
+*  7. isSubstring function
+*  8. isAnagram function
+*  9. isPalindromeRecursive function
+*  10. isPermutationRecursive function
+
+
+    fun greeting(name: String, age: Int) = "Hi, my name is $name, I'm $age years old"
+
+    fun fibonacci(n: Int): Int = if (n == 1) 1 else if (n == 2) 2 else fibonacci(n - 1) + fibonacci(n - 2)
+
+    fun reverseString(str: String): String = str.reversed()
+    
+    fun isPalindrome(str: String): Boolean = str == reverseString(str)
+    
+    fun isPermutation(strA: String, strB: String): Boolean = strA.toList().sorted() == strB.toList().sorted()
+    
+    fun isSubstring(str: String, subStr: String): Boolean = str.contains(subStr)
+    
+    fun isAnagram(strA: String, strB: String): Boolean = strA.toList().sorted() == strB.toList().sorted() && strA.length == strB.length
+    
+    fun isPrime(n: Int): Boolean = (2..n / 2).none { n % it == 0 }
+
+## Chapter 5: OOP
+    // class
+    class Person(val name: String, val age: Int) {
+    fun greet() {
+    println("Hi, my name is $name, I

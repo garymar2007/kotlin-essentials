@@ -73,6 +73,8 @@ fun isSubstring(str: String, subStr: String): Boolean = str.contains(subStr)
 
 fun isAnagram(strA: String, strB: String): Boolean = strA.toList().sorted() == strB.toList().sorted() && strA.length == strB.length
 
+fun isPrime(n: Int): Boolean = (2..n / 2).none { n % it == 0 }
+
 fun main() {
     simpleFunction("Hello World!")
     simpleFunction("Kotlin")
@@ -88,4 +90,12 @@ fun main() {
     demoDefaultArgs(b = "Kotlin")   // need to name arguments in the right order
     demoDefaultArgs(a = 10, b = "Kotlin")
     complexFunction("Kotlin")
+    println(greeting("Gary", 50))
+    println(fibonacci(10))
+    println(isPalindrome("racecar"))
+    println(isPermutation("racecar", "carrace"))
+    println(isSubstring("Hello World", "llo Wor"))
+    println(isAnagram("Hello World", "llo Wor"))    // false
+    println(isPrime(10))
+    println(isPrime(2003))
 }
