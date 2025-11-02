@@ -363,3 +363,14 @@ Instructions are EXECUTED (imperative programming), and expressions are VALUE (f
         ReadWriterService(reader, writer).copy()
     
     }
+
+## Chapter 6: Kotlin DSL
+
+### What is DSL?
+Domain Specific Language (DSL) is a language designed to be used in a specific context to solve a specific problem.
+DSL is often used to define data structures or configurations in a more declarative and concise way than using standard code.
+
+### Why Kotlin DSL?
+Kotlin DSL is a way to create DSLs in Kotlin, and Kotlin DSL is a powerful feature that allows you to create domain-specific
+languages using Kotlin's language features like lambda expressions with receivers, extension functions, and infix notation.
+
