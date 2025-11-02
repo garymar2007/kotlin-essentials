@@ -38,6 +38,110 @@ class CachedRepository(private val repository: Repository) : Repository by repos
     }
 }
 
+// Decorator Pattern
+interface TextProcessor {
+    fun process(text: String): String
+}
+
+class BasicTextProcessor : TextProcessor {
+    override fun process(text: String): String = text.trim()
+}
+
+class CapitalizingProcessor(private val textProcessor: TextProcessor) : TextProcessor by textProcessor {
+    override fun process(text: String): String = textProcessor.process(text).uppercase()
+}
+
+class ReversingProcessor(private val textProcessor: TextProcessor) : TextProcessor by textProcessor {
+    override fun process(text: String): String = textProcessor.process(text).reversed()
+}
+
+// Property delegation with custom logic
+interface UserService {
+    fun getUser(id: Int): String?
+    fun saveUser(id: Int, user: String)
+}
+
+class DefaultUserService : UserService {
+    private val users = mutableMapOf<Int, String>()
+    override fun getUser(id: Int): String? = users[id]
+    override fun saveUser(id: Int, name: String) {
+        users[id] = name
+        println("User Id:$id saved as $name")
+    }
+}
+
+class LoggingUserService(private val userService: UserService) : UserService by userService {
+    override fun getUser(id: Int): String? {
+        println("Getting user $id")
+        val result = userService.getUser(id)
+        println("Result $result")
+        return result
+    }
+
+    override fun saveUser(id: Int, name: String) {
+        println("Saving user $id")
+        userService.saveUser(id, name)
+        println("Saved user $id")
+    }
+}
+
+// Combining multiple delegates
+interface Reader {
+    fun read(): String
+}
+
+interface Writer {
+    fun write(text: String)
+}
+
+class FileReader : Reader {
+    override fun read(): String = "File content"
+}
+
+class ConsoleWriter : Writer {
+    override fun write(text: String) = println("Writing: $text in console")
+}
+
+class ReadWriterService(reader: Reader, writer: Writer) : Reader by reader, Writer by writer {
+    fun copy() {
+        val content = read()
+        write(content)
+    }
+}
+
+// Delegate with custom scope
+interface DataSource {
+    fun fetchData(): List<String>
+}
+
+class NetworkDataSource : DataSource {
+    override fun fetchData(): List<String> {
+        println("Fetching data from network...")
+        return listOf("Network Item 1", "Network Item 2", "Network Item 3")
+    }
+}
+
+class CachedDataSource(private val dataSource: DataSource) : DataSource by dataSource {
+    private var cachedData: List<String>? = null
+
+    override fun fetchData(): List<String> {
+        if (cachedData == null) {
+            println("Cached data is empty, fetching data from network...")
+            return dataSource.fetchData()
+        }
+
+        return cachedData!!
+    }
+
+    fun clearCache() {
+        cachedData = null
+        println("Cache cleared")
+    }
+}
+
+// Delegate with lazy initialization
+ class LazyCachedDataSource(dataSource: () -> DataSource) : DataSource by lazy(dataSource).value
+
 
 fun main() {
     val b = BaseImpl(10)
@@ -48,4 +152,19 @@ fun main() {
 
     println(cachedRepo.getAll()) // Delegated to DatabaseRepository
     println(cachedRepo.getById(1)) // Uses cache + delegation
+
+    val basicTextProcessor = BasicTextProcessor()
+    println(CapitalizingProcessor(basicTextProcessor).process("  hello  "))
+    println(ReversingProcessor(basicTextProcessor).process("  hello  "))
+
+    val userService = DefaultUserService()
+    val loggingUserService = LoggingUserService(userService)
+    loggingUserService.saveUser(1, "Gary")
+    loggingUserService.getUser(1)
+    loggingUserService.saveUser(2, "Carol")
+
+    val reader = FileReader()
+    val writer = ConsoleWriter()
+    ReadWriterService(reader, writer).copy()
+
 }
