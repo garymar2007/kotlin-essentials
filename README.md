@@ -374,3 +374,16 @@ DSL is often used to define data structures or configurations in a more declarat
 Kotlin DSL is a way to create DSLs in Kotlin, and Kotlin DSL is a powerful feature that allows you to create domain-specific
 languages using Kotlin's language features like lambda expressions with receivers, extension functions, and infix notation.
 
+An example of DSL for testing:
+
+Before using DSL, the testing code looks like this:
+![img_1.png](img_1.png)
+
+After using DSL, the testing code looks like this:
+
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
+
